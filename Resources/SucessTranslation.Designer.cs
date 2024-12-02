@@ -144,7 +144,7 @@ namespace A3System.Resources {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Email de usuário atualizada com sucesso para {0}, atualização para User ID: {1}..
         /// </summary>
-        public static string UserEmailUpdatedEmail0ID1 {
+        public static string UserUpdated {
             get {
                 return ResourceManager.GetString("UserEmailUpdatedEmail0ID1", resourceCulture);
             }
