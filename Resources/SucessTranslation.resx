@@ -123,13 +123,13 @@
   <data name="SetorUpdated" xml:space="preserve">
     <value>Setor atualizado com sucesso.</value>
   </data>
-  <data name="UserEmailUpdatedEmail0ID1" xml:space="preserve">
-    <value>Email de usuário atualizada com sucesso para {0}, atualização para User ID: {1}.</value>
-  </data>
   <data name="UserPasswordUpdated" xml:space="preserve">
     <value>Senha de usuário atualizada com sucesso.</value>
   </data>
   <data name="UserRegistered" xml:space="preserve">
     <value>Usuário cadastrado com sucesso.</value>
+  </data>
+  <data name="UserUpdated" xml:space="preserve">
+    <value>Usuário foi atualizado com sucesso.</value>
   </data>
 </root>

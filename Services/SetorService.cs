@@ -38,8 +38,8 @@ namespace A3System.Services
                     options.ThrowOnFailures();
                     options.IncludeRulesNotInRuleSet();
                 });
-
-                _context.Setor.AddRange(_mapper.Map<SetorModel>(setor));
+                var mappedSetor = _mapper.Map<SetorModel>(setor);
+                _context.Setor.Add(mappedSetor);
                 await _context.SaveChangesAsync();
             }
             catch (Exception e)
@@ -86,8 +86,10 @@ namespace A3System.Services
                     options.IncludeRulesNotInRuleSet();
                 });
 
-                var setorDb = _context.Setor.Where(x => x.Id == setor.Id).FirstOrDefault();
+                var setorDb = _context.Setor.AsNoTracking().Where(x => x.Id == setor.Id).FirstOrDefault();
                 if (setorDb == null) throw new Exception(ErrorTranslation.InvalidSetor);
+                setor.CreatedAt = setorDb.CreatedAt;
+                setorDb = _mapper.Map<SetorModel>(setor);
                 _context.Setor.Update(setorDb);
                 await _context.SaveChangesAsync();
             }

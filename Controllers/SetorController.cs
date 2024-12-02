@@ -75,8 +75,7 @@ namespace A3System.Controllers
         {
             try
             {
-                var result = _setorServices.UpdateSetor(setor);
-                if (result == null) return BadRequest();
+                await _setorServices.UpdateSetor(setor);
 
                 return Ok(SucessTranslation.SetorUpdated);
             }

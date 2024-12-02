@@ -73,7 +73,7 @@ namespace A3System.Services
                     options.IncludeRuleSets("Senhas");
                 });
 
-                var info = await _context.Users.Where(u => u.Id == usuarioDto.Id).FirstOrDefaultAsync();
+                var info = await _context.Users.AsNoTracking().Where(u => u.Id == usuarioDto.Id).FirstOrDefaultAsync();
                 if (info == null) throw new Exception(ErrorTranslation.UserNotFound);
                 info.Password = HashPassword.GerarHash(usuarioDto.Password!);
 
@@ -95,8 +95,9 @@ namespace A3System.Services
                     options.IncludeRulesNotInRuleSet();
                 });
 
-                var info = await _context.Users.Where(u => u.Id == usuarioDto.Id).FirstOrDefaultAsync();
+                var info = await _context.Users.AsNoTracking().Where(u => u.Id == usuarioDto.Id).FirstOrDefaultAsync();
                 if (info == null) throw new Exception(ErrorTranslation.UserNotFound);
+                usuarioDto.Password = info.Password;
                 info = _mapper.Map<UserModel>(usuarioDto);
 
                 _context.Users.Update(info);

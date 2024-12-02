@@ -19,6 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")), ServiceLifetime.Transient);
 
+
 #region  Scopes
 builder.Services.AddScoped<IRegisterService, CadastroService>();
 builder.Services.AddScoped<ITokenService, TokenService>();

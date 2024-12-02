@@ -56,7 +56,7 @@ namespace A3System.Controllers
             try
             {
                 await _usuarioService.UpdateUser(usuarioDto);
-                return Ok(SucessTranslation.UserEmailUpdatedEmail0ID1);
+                return Ok(SucessTranslation.UserUpdated);
             }
             catch (ValidationException e)
             {

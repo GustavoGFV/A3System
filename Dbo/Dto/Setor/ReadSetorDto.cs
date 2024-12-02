@@ -8,7 +8,7 @@
         public string? Description { get; set; }
         public bool Active { get; set; }
 
-        public DateTime CreatedAt = DateTime.Now;
+        public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt = DateTime.Now;
     }
 }
