@@ -3,6 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace A3System.Dbo.Model
 {
+    /// <summary>
+    /// Estrutura do banco de dados do Usuarios
+    /// </summary>  
+
     [Table("Usuarios")]
     public class UserModel
     {

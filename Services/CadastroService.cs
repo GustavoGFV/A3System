@@ -1,12 +1,12 @@
 ﻿using A3System.Dbo;
+using A3System.Dbo.Dto.User;
 using A3System.Dbo.Model;
 using A3System.Interface;
+using A3System.Resources;
 using A3System.Utils.ValidatorHasher;
 using AutoMapper;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using A3System.Resources;
-using A3System.Dbo.Dto.User;
 
 namespace UsuariosAPI.Services
 {
@@ -23,6 +23,11 @@ namespace UsuariosAPI.Services
             _validator = validator;
         }
 
+        /// <summary>
+        /// Cadastrar Usuario
+        /// Ele valida todos os campos no inicio para evitar o processamento com campos falhos
+        /// </summary>
+        /// <returns>Sucess</returns>
         public async Task CadastrarUsuario(CreateUserDto createDto)
         {
             try

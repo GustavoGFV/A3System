@@ -19,6 +19,10 @@ namespace A3System.Controllers
             _validator = validator;
         }
 
+        /// <summary>
+        /// Cadastrar Usuario
+        /// Ele valida todos os campos no inicio para evitar o processamento com campos falhos
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> CadastraUsuario([FromBody] CreateUserDto usuarioDto)
         {

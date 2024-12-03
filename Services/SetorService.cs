@@ -1,15 +1,10 @@
 ﻿using A3System.Dbo;
 using A3System.Dbo.Dto.Setor;
-using A3System.Dbo.Dto.User;
 using A3System.Dbo.Model;
 using A3System.Interface;
 using A3System.Resources;
-using A3System.Validation.UserValidations;
 using AutoMapper;
 using FluentValidation;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace A3System.Services
@@ -29,6 +24,10 @@ namespace A3System.Services
             _validatorUpdate = validatorUpdate;
         }
 
+        /// <summary>
+        /// Create Setor, ele valida todos os campos se estão preenchidos corretamente antes de iniciar o processo
+        /// </summary>
+        /// <returns>Sucess</returns>
         public async Task CreateSetor(CreateSetorDto setor)
         {
             try
@@ -48,6 +47,10 @@ namespace A3System.Services
             }
         }
 
+        /// <summary>
+        /// Busca o Setor pelo ID do Setor
+        /// </summary>
+        /// <returns>ReadSetorDto</returns>
         public async Task<ReadSetorDto> GetSetorById(int id)
         {
             try
@@ -62,6 +65,10 @@ namespace A3System.Services
             }
         }
 
+        /// <summary>
+        /// Busca todos os Setores
+        /// </summary>
+        /// <returns>List<ReadSetorDto></returns>
         public async Task<List<ReadSetorDto>> GetAll()
         {
             try
@@ -76,6 +83,12 @@ namespace A3System.Services
             }
         }
 
+        /// <summary>
+        /// Atualiza o setor selecionado,
+        /// Ele valida todos os campos no inicio para evitar o processamento com campos falhos
+        /// Ele mantem a data do CreatedAt pois ela nao deve ser atualizada
+        /// </summary>
+        /// <returns>Sucess</returns>
         public async Task UpdateSetor(UpdateSetorDto setor)
         {
             try

@@ -1,5 +1,4 @@
 ﻿using A3System.Dbo;
-using A3System.Dbo.Dto.Setor;
 using A3System.Dbo.Dto.User;
 using A3System.Dbo.Model;
 using A3System.Interface;
@@ -22,9 +21,14 @@ namespace A3System.Services
             _mapper = mapper;
             _context = context;
             _validatorUpdate = validatorUpdate;
-    }
+        }
 
         #region Retornos de Usuario
+
+        /// <summary>
+        /// Seleção de usuario por ID
+        /// </summary>
+        /// <returns>ReadUserDto</returns>
         public async Task<ReadUserDto> GetUsuario(int id)
         {
             try
@@ -39,6 +43,10 @@ namespace A3System.Services
             }
         }
 
+        /// <summary>
+        /// Seleção de multiplos usuarios
+        /// </summary>
+        /// <returns>List<ReadUserDto></returns>
         public async Task<List<ReadUserDto>> GetUsuarios()
         {
             try
@@ -51,7 +59,7 @@ namespace A3System.Services
                     usuarios = context.Users.ToList();
                     if (usuarios.Count == 0) throw new Exception(ErrorTranslation.UserNotFound);
 
-                    mappedUsers = _mapper.Map<List<ReadUserDto>>(usuarios);                   
+                    mappedUsers = _mapper.Map<List<ReadUserDto>>(usuarios);
                 }
                 return mappedUsers;
             }
@@ -63,6 +71,12 @@ namespace A3System.Services
         #endregion
 
         #region Endpoints de Atualizar Usuario
+
+        /// <summary>
+        /// Atualização da senha do usuario
+        /// No validator temos a validação expecifica para a senha assim evitando que tente validar todas as informações
+        /// neste caso desnecessarias
+        /// </summary>
         public async Task UpdatePassword(UpdateUserDto usuarioDto)
         {
             try
@@ -85,6 +99,12 @@ namespace A3System.Services
                 throw new Exception(ErrorTranslation.UserUpdateFailed, e);
             }
         }
+
+        /// <summary>
+        /// Atualização do usuario
+        /// No validator temos a validação de todos os campos para verificar se nenhum deles foi excluido acidentalmente
+        /// a validação de senhas não esta inclusa pois neste caso é desnecessaria
+        /// </summary>
         public async Task UpdateUser(UpdateUserDto usuarioDto)
         {
             try

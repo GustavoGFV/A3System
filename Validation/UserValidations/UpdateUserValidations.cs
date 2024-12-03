@@ -7,6 +7,13 @@ namespace UsuariosAPI.Validation.UserValidations
 {
     public class UpdateUserValidations : AbstractValidator<UpdateUserDto>
     {
+        /// <summary>
+        /// FluentValidation prove diversos tipos de validação ja pre-feitas junto de configurações feitas pelo
+        /// proprio usuario
+        /// Nesta Validação ele olha se todos os campos estão ou não vazios e em caso de erro ele tem uma mensagem diferenciada feita pelo dev
+        /// O RuleSet separa uma validação das outras, para que ela seja chamada diretamente sem ser chamada pelas outras, sendo assim
+        /// um processo modular de validação, todas podem ser executadas juntas, mas o ruleset pode ser utilizado separamente 
+        /// </summary>
         public UpdateUserValidations()
         {
             RuleFor(x => x).NotNull().NotEmpty().WithMessage(ErrorTranslation.FormNotFilled).WithErrorCode(ErrorCodes.UserObjectErrorCode);

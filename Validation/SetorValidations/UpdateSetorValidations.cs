@@ -7,6 +7,11 @@ namespace A3System.Validation.UserValidations
 {
     public class UpdateSetorValidations : AbstractValidator<UpdateSetorDto>
     {
+        /// <summary>
+        /// FluentValidation prove diversos tipos de validação ja pre-feitas junto de configurações feitas pelo
+        /// proprio usuario
+        /// Nesta Validação ele olha se todos os campos estão ou não vazios e em caso de erro ele tem uma mensagem diferenciada feita pelo dev 
+        /// </summary>
         public UpdateSetorValidations()
         {
             RuleFor(x => x).NotNull().NotEmpty().WithMessage(ErrorTranslation.FormNotFilled).WithErrorCode(ErrorCodes.SetorObjectErrorCode);

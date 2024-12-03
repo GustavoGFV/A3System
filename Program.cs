@@ -1,6 +1,3 @@
-using System;
-using System.Net;
-using System.Text;
 using A3System.Dbo;
 using A3System.Dbo.Dto.Setor;
 using A3System.Dbo.Dto.User;
@@ -11,16 +8,19 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Net;
+using System.Text;
 using UsuariosAPI.Services;
 using UsuariosAPI.Validation.UserValidations;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+/// Conexão do Banco de dados
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")), ServiceLifetime.Transient);
 
 
 #region  Scopes
+/// Inicialização de escopos dos Services com suas Interfaces
 builder.Services.AddScoped<IRegisterService, CadastroService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<ISetorService, SetorService>();
@@ -30,6 +30,7 @@ builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 #endregion
 
 #region Validations Scopes
+/// Inicialização de escopos das Validações
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IValidator<CreateUserDto>, CreateUserValidations>();
 builder.Services.AddScoped<IValidator<UpdateUserDto>, UpdateUserValidations>();
@@ -40,6 +41,7 @@ builder.Services.AddScoped<IValidator<UpdateSetorDto>, UpdateSetorValidations>()
 #region Auth
 var key = Encoding.ASCII.GetBytes("bd65c3-852*f850+0d*e29-588db5d0f85+4.6af++925f81df0As52");
 
+/// Criação do Bearer
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {

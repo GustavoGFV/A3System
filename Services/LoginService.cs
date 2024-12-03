@@ -1,10 +1,10 @@
-﻿using A3System.Interface;
-using Microsoft.EntityFrameworkCore;
-using A3System.Dbo;
+﻿using A3System.Dbo;
 using A3System.Dbo.Dto.Login;
-using A3System.Utils.ValidatorHasher;
 using A3System.Dbo.Dto.User;
+using A3System.Interface;
+using A3System.Utils.ValidatorHasher;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace A3System.Services
 {
@@ -21,6 +21,10 @@ namespace A3System.Services
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Login
+        /// </summary>
+        /// <returns>UserDto</returns>
         public async Task<UserDto> LoginAsync(LoginDto request)
         {
             try

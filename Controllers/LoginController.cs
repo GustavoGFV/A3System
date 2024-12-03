@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using A3System.Dbo.Dto.Login;
 using A3System.Interface;
-using A3System.Dbo.Dto.Login;
+using Microsoft.AspNetCore.Mvc;
 
 namespace A3System.Controllers
 {
@@ -22,7 +21,7 @@ namespace A3System.Controllers
             try
             {
                 var result = await _loginService.LoginAsync(request);
-                
+
                 return Ok(result);
             }
             catch (Exception e)

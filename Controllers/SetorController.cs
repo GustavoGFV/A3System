@@ -1,9 +1,9 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
+﻿using A3System.Dbo.Dto.Setor;
 using A3System.Interface;
 using A3System.Resources;
-using A3System.Dbo.Dto.Setor;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace A3System.Controllers
 {
@@ -18,6 +18,9 @@ namespace A3System.Controllers
             _setorServices = setorServices;
         }
 
+        /// <summary>
+        /// Cadastro de Setor, disponivel apenas com o Bearer Token valido
+        /// </summary>
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> CadastraSetor([FromBody] CreateSetorDto setor)
@@ -38,6 +41,9 @@ namespace A3System.Controllers
             }
         }
 
+        /// <summary>
+        /// Seleção de Setor por ID do setor, disponivel apenas com o Bearer Token valido
+        /// </summary>
         [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSetorById(int id)
@@ -53,6 +59,10 @@ namespace A3System.Controllers
                 return NotFound(e.InnerException != null ? e.InnerException.Message : e.Message);
             }
         }
+
+        /// <summary>
+        /// Seleção de todos os Setores com uma listagem, para melhor exibição, disponivel apenas com o Bearer Token valido
+        /// </summary>
         [Authorize]
         [HttpGet("All")]
         public async Task<IActionResult> GetAll()
@@ -69,6 +79,9 @@ namespace A3System.Controllers
             }
         }
 
+        /// <summary>
+        /// Update de Setor, disponivel apenas com o Bearer Token valido
+        /// </summary>
         [Authorize]
         [HttpPut("Update")]
         public async Task<IActionResult> UpdateSetor([FromBody] UpdateSetorDto setor)

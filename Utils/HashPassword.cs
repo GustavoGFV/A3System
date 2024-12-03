@@ -3,6 +3,9 @@ using System.Text;
 
 namespace A3System.Utils.ValidatorHasher
 {
+    /// <summary>
+    /// Hash da senha de usuario, tanto para registro quanto para login
+    /// </summary>
     public class HashPassword
     {
         public static string GerarHash(string senha)

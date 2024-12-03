@@ -1,4 +1,5 @@
 ﻿using A3System.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -12,6 +13,7 @@ namespace A3System.Controllers
 
         public TokenController(ITokenService tokenServices) => _tokenService = tokenServices;
 
+        [Authorize(Roles = "Dev")]
         [HttpGet("{id}")]
         [SwaggerOperation(Summary = "Gerar Bearer Token")]
         public IActionResult CreateToken(string id)

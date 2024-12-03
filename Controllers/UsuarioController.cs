@@ -1,10 +1,10 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.Annotations;
-using A3System.Dbo.Dto.User;
+﻿using A3System.Dbo.Dto.User;
 using A3System.Interface;
 using A3System.Resources;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace A3System.Controllers
 {
@@ -16,6 +16,9 @@ namespace A3System.Controllers
 
         public UsuarioController(IUsuarioService usuarioService) => _usuarioService = usuarioService;
 
+        /// <summary>
+        /// Get Usuario por ID, vai ser utilizada pelo proprio sistema para consultar o usuario atual.
+        /// </summary>
         [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUsuario(int id)
@@ -32,7 +35,11 @@ namespace A3System.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+        /// <summary>
+        /// Get Usuarios é uma camada da API aonde apenas os Admin e Devs do sistema poderiam acessar 
+        /// pois seria uma informação inalcansavel pelo usuario padrão
+        /// </summary>
+        [Authorize(Roles = "Admin, Dev")]
         [HttpGet("All")]
         public async Task<IActionResult> GetUsuarios()
         {
@@ -49,6 +56,9 @@ namespace A3System.Controllers
         }
 
         #region Atualizar Usuario
+        /// <summary>
+        /// Atualização das informações gerais de usuario, seria utilizado para atualizar o UserName ou algo assim em um sistema comum
+        /// </summary>
         [Authorize]
         [HttpPut("Atualizar")]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto usuarioDto)
@@ -69,6 +79,9 @@ namespace A3System.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualização da senha do usuario com as inforamções na descrição do Swagger do que deve ser obrigatoriamente preenchido
+        /// </summary>
         [Authorize]
         [HttpPut("Atualizar/Senha")]
         [SwaggerOperation(Description = "<strong>Obrigatório!</strong> <li> <strong> Preencher: </strong>  <ul><li>Id</li> " +
